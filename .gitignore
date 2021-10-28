@@ -1,4 +1,4 @@
 *.log
 config.py
 __pycache__
-*.sh
+db.key
