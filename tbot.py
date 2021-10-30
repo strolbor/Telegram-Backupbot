@@ -40,13 +40,15 @@ def backupExtern(update: Update, context: CallbackContext) -> None:
     a = f'Anfrage von {update.effective_user.id} @ backup Extern'
     write_log(a)
     global process
-    if process.poll() == 0 and externe_HDD:
-       cmd = ["/media/HDD/Backup-New/extern.sh"]
-       process = subprocess.Popen(cmd)
-       update.message.reply_text(f'Backup wurde gestartet.')
+    if externe_HDD:
+       if process.poll() == 0:
+          cmd = ["/media/HDD/Backup-New/extern.sh"]
+          process = subprocess.Popen(cmd)
+          update.message.reply_text(f'Backup wurde gestartet.')
+       else:
+          update.message.reply_text(f'Backup läuft schon!')
     else:
-       update.message.reply_text(f'Backup läuft schon oder es ist gesperrt.')
-
+       update.message.reply_text(f'Dieser Command ist gesperrt.')
 
 
 def status(update: Update, context: CallbackContext) -> None:
@@ -59,14 +61,18 @@ def status(update: Update, context: CallbackContext) -> None:
         update.message.reply_text(f'Backup läuft schon.')
 
 def unlock(update: Update, context: CallbackContext) -> None:
-     global externe_HDD
-     externe_HDD = True
-     update.message.reply_text(f'OK!')
+    global externe_HDD
+    a = f'Anfrgae von {update.effective_user.id} @ Unlock'
+    write_log(a)
+    externe_HDD = True
+    update.message.reply_text(f'OK!')
 
 def lock(update: Update, context: CallbackContext) -> None:
-     global externe_HDD
-     externe_HDD = False
-     update.message.reply_text(f'OK!')
+    global externe_HDD
+    a = f'Anfrgae von {update.effective_user.id} @ Lock'
+    write_log(a) 
+    externe_HDD = False
+    update.message.reply_text(f'OK!')
 
 updater = Updater(cf.TOKEN)
 
