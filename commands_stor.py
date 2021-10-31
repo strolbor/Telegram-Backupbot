@@ -14,20 +14,24 @@ def stoerender(update: Update, context: CallbackContext):
     else:
         datum = datetime.now().strftime("%d.%b.%Y  den %H:%M:%S")
         print(array)
+        zweiter_teil = False
         zu_schreiben = ""
         if array[1] == "start":
             zu_schreiben = "Am folgenden Tag {} fing folgendes: >{}< an".format(datum,array[2])
+            zweiter_teil = True
         elif array[1] == "stop":
             zu_schreiben = "Am folgenden Tag {} hörte folgendes: >{}< auf".format(datum,array[2])
+            zweiter_teil = True
         else:
             update.message.reply_text(f'Fehler das zweite Argument muss entweder "start" oder "stop" sein.')
 
-        #Datei schreiben
-        zu_schreiben = zu_schreiben + "\r\n"
-        write.write_stoer(zu_schreiben)
-        print(zu_schreiben)
+        if zweiter_teil:
+            #Datei schreiben
+            zu_schreiben = zu_schreiben + "\r\n"
+            write.write_stoer(zu_schreiben)
+            print(zu_schreiben)
 
-        # Nachricht schreiben
-        update.message.reply_text(f'Erledigt. Folgene Nachricht wurde im Log aufgenommen:')
-        update.message.reply_text(f'{zu_schreiben}')
+            # Nachricht schreiben
+            update.message.reply_text(f'Erledigt. Folgene Nachricht wurde im Log aufgenommen:')
+            update.message.reply_text(f'{zu_schreiben}')
 
