@@ -37,5 +37,7 @@ echo "[MySQL] entferne MySQL Backup"
 rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 
 
-# E-Mail senden
-python3 request.py "Externes Backup ist fertig."
+# Telegram Nachricht senden
+read telegramid < empf.id
+python3 request.py -id $telegramid -txt "Das interne Backup ist fertig."
+echo "[Telegram] Nachricht gesendet!"

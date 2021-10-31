@@ -19,6 +19,18 @@ def write_log(text):
     datei_log.flush()
     datei_log.close()
 
+def write_id(ids):
+    
+    datei_id = open('empf.id','a')
+    datei_id.write(ids)
+    datei_id.flush()
+    datei_id.close()
+
+def delete_file(filename):
+	"""Datei löschen"""
+	if os.path.exists(filename): # Wenn Datei vorhanden
+		os.remove(filename) # Lösche diese Datei
+
 def hello(update: Update, context: CallbackContext) -> None:
     a = f'Anfrgae von {update.effective_user.id} @ hello'
     write_log(a)
@@ -37,7 +49,9 @@ def backup(update: Update, context: CallbackContext) -> None:
 
 def backupExtern(update: Update, context: CallbackContext) -> None:
     global externe_HDD
-    a = f'Anfrage von {update.effective_user.id} @ backup Extern'
+    ids = f'{update.effective_user.id}'
+    a = f'Anfrage von {ids} @ backup Extern'
+    write_id(ids)
     write_log(a)
     global process
     if externe_HDD:
