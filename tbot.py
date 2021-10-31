@@ -91,6 +91,14 @@ def lock(update: Update, context: CallbackContext) -> None:
     externe_HDD = False
     update.message.reply_text(f'OK!')
 
+def test(update: Update, context: CallbackContext) -> None:
+    ids = f'{update.effective_user.id}'
+    a = f'Anfrage von {ids} @ backup Extern'
+    write_log(a)
+    write_id(ids)
+    update.message.reply_text(f'OK! Fertig simuliert')
+
+
 updater = Updater(cf.TOKEN)
 
 updater.dispatcher.add_handler(CommandHandler('start', hello))
@@ -101,5 +109,7 @@ updater.dispatcher.add_handler(CommandHandler('status', status))
 
 updater.dispatcher.add_handler(CommandHandler('unlock', unlock))
 updater.dispatcher.add_handler(CommandHandler('lock', lock))
+updater.dispatcher.add_handler(CommandHandler('test', test))
+
 updater.start_polling()
 updater.idle()
