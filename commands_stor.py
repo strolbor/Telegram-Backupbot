@@ -30,7 +30,8 @@ def stoerender(update: Update, context: CallbackContext):
 
         if zweiter_teil:
             #Datei schreiben
-            zu_schreiben = zu_schreiben + "\n"
+            zu_schreiben = zu_schreiben 
+            
             write.write_stoer(zu_schreiben)
             print(zu_schreiben)
 
