@@ -15,7 +15,7 @@ all_args.add_argument("-id", "--telegram-id", required=True,
 all_args.add_argument("-txt", "--text", required=True,
    help='Diese Telegram Nachricht muss in "" stehen.')
    #Debug Mode aktivieren
-all_args.add_argument("-debug", "--debugging", required=False,action='store_true',
+all_args.add_argument("-debug", "--debugging", required=False,
    help="Sendet eine 2. Nachricht an den in der Config stehenden Empfänger.")
 
 #Arugment zu dict Objekt

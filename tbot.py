@@ -93,7 +93,7 @@ def lock(update: Update, context: CallbackContext) -> None:
 
 def test(update: Update, context: CallbackContext) -> None:
     ids = f'{update.effective_user.id}'
-    a = f'Anfrage von {ids} @ backup Extern'
+    a = f'Anfrage von {ids} @ test'
     write_log(a)
     write_id(ids)
     update.message.reply_text(f'OK! Fertig simuliert')
