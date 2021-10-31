@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 import config as cf
-import write, helper, commands_backup as cmdbck, commands_stor as cmdsto
+import write, helper, commands_backup as cmdbck, commands_stor as cmdsto, commands as cmd
 
 # pip install python-telegram-bot
 
@@ -10,24 +10,13 @@ import write, helper, commands_backup as cmdbck, commands_stor as cmdsto
 #print("Poll",process.poll())
 externe_HDD = False
 
-def hello(update: Update, context: CallbackContext) -> None:
-    a = f'Anfrgae von {update.effective_user.id} @ hello'
-    write.write_log(a)
-    update.message.reply_text(f'Hallo {update.effective_user.first_name}! ')
-
-def test(update: Update, context: CallbackContext) -> None:
-    ids = f'{update.effective_user.id}'
-    a = f'Anfrage von {ids} @ test'
-    write.write_log(a)
-    write.write_id(ids)
-    update.message.reply_text(f'OK! Fertig simuliert')
 
 
 def main():
     updater = Updater(cf.TOKEN)
 
     # normale Commands
-    updater.dispatcher.add_handler(CommandHandler('start', hello))
+    updater.dispatcher.add_handler(CommandHandler('start', cmd.hello))
     updater.dispatcher.add_handler(CommandHandler('backup', cmdbck.backup))
     updater.dispatcher.add_handler(CommandHandler('extern', cmdbck.backup_extern))
     updater.dispatcher.add_handler(CommandHandler('status', cmdbck.status))
@@ -39,7 +28,7 @@ def main():
     # Debug Commands
     updater.dispatcher.add_handler(CommandHandler('unlock', cmdbck.unlock))
     updater.dispatcher.add_handler(CommandHandler('lock', cmdbck.lock))
-    updater.dispatcher.add_handler(CommandHandler('test', test))
+    updater.dispatcher.add_handler(CommandHandler('test', cmd.test))
 
     updater.start_polling()
     updater.idle()

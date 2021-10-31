@@ -3,6 +3,8 @@ from telegram.ext import CallbackContext
 import write, helper
 import subprocess
 
+externe_HDD = False
+
 def backup(update: Update, context: CallbackContext) -> None:
     global process
     ids = f'{update.effective_user.id}'
