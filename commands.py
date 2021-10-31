@@ -1,3 +1,7 @@
+from telegram import Update
+from telegram.ext import CallbackContext
+import write
+
 def hello(update: Update, context: CallbackContext) -> None:
     a = f'Anfrgae von {update.effective_user.id} @ hello'
     write.write_log(a)

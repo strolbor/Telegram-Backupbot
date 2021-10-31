@@ -1,6 +1,6 @@
 from telegram import Update
 from telegram.ext import CallbackContext
-import write, helper
+import write
 import subprocess
 
 externe_HDD = False
