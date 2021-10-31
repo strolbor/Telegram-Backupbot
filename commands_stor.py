@@ -17,11 +17,14 @@ def stoerender(update: Update, context: CallbackContext):
         zweiter_teil = False
         zu_schreiben = ""
         if array[1] == "start":
-            zu_schreiben = "Am folgenden Tag {} fing folgendes: >{}< an".format(datum,array[2])
+            zu_schreiben = "Am folgenden Tag {} fing folgendes: >{}< an".format(datum,array[2:])
             zweiter_teil = True
         elif array[1] == "stop":
-            zu_schreiben = "Am folgenden Tag {} hörte folgendes: >{}< auf".format(datum,array[2])
+            zu_schreiben = "Am folgenden Tag {} hörte folgendes: >{}< auf".format(datum,array[2:])
             zweiter_teil = True
+        elif array[1] == "moment":
+            zweiter_teil = True
+            zu_schreiben = "Am folgenden Tag {} hörte man folgendes: >{}<".format(datum,array[2:])
         else:
             update.message.reply_text(f'Fehler das zweite Argument muss entweder "start" oder "stop" sein.')
 
