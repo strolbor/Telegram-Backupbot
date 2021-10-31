@@ -3,6 +3,7 @@ from telegram.ext import CallbackContext
 import write
 import subprocess
 
+process = subprocess.Popen(["echo", "hi"])
 externe_HDD = False
 
 def backup(update: Update, context: CallbackContext) -> None:
