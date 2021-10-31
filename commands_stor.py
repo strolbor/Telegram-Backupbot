@@ -12,7 +12,7 @@ def stoerender(update: Update, context: CallbackContext):
         update.message.reply_text(f'Fehler. Es muss folgender Command sein: /stoer [start|stop] <Was> als einzelnes Wort.')
         update.message.reply_text(f'Es muss mindestens 3 Argumente dran sein.')
     else:
-        datum = datetime.now().strftime("%d.%b.%Y  den %H:%M:%S")
+        datum = datetime.now().strftime("%d.%b.%Y  um %H:%M:%S")
         print(array)
         zweiter_teil = False
         zu_schreiben = ""
@@ -31,7 +31,7 @@ def stoerender(update: Update, context: CallbackContext):
         if zweiter_teil:
             #Datei schreiben
             zu_schreiben = zu_schreiben 
-            
+
             write.write_stoer(zu_schreiben)
             print(zu_schreiben)
 
