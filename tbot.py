@@ -6,9 +6,6 @@ import write, helper, commands_backup as cmdbck, commands_stor as cmdsto, comman
 
 # pip install python-telegram-bot
 
-#process = subprocess.Popen(['echo'])
-#print("Poll",process.poll())
-externe_HDD = False
 
 
 
