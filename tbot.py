@@ -20,8 +20,9 @@ def write_log(text):
     datei_log.close()
 
 def write_id(ids):
-    
-    datei_id = open('empf.id','a')
+    file_name = 'empf.id'
+    delete_file(file_name)
+    datei_id = open(file_name,'a')
     datei_id.write(ids)
     datei_id.flush()
     datei_id.close()
@@ -38,8 +39,10 @@ def hello(update: Update, context: CallbackContext) -> None:
 
 def backup(update: Update, context: CallbackContext) -> None:
     global process
-    a = f'Anfrgae von {update.effective_user.id} @ backup'
+    ids = f'{update.effective_user.id}'
+    a = f'Anfrage von {ids} @ backup Extern'
     write_log(a)
+    write_id(ids)
     if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
       process = subprocess.Popen(cmd)
