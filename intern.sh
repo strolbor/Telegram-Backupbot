@@ -10,7 +10,7 @@ read pass < db.key
 
 #MySQL Dump
 echo "[MySQL] dumpen"
-mysqldump --single-transaction -h localhost -u nextcloud -p$pass nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 echo "[MySQL] fertig"
 
 echo "Timer"
@@ -24,7 +24,7 @@ fi
 
 # backup data
 echo "->Start der Sicherung $(date)."
-borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www --exclude *.tmp 
+borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www /etc/apache2/ --exclude *.tmp 
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
 
 # prune archives

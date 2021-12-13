@@ -11,7 +11,7 @@ read pass < db.key
 
 #MySQL Dump
 echo "[MySQL] dumpen"
-mysqldump --single-transaction -h localhost -u nextcloud -p$pass nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 echo "[MySQL] fertig"
 
 sleep 3

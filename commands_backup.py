@@ -14,7 +14,8 @@ def backup(update: Update, context: CallbackContext) -> None:
     write.write_id(ids)
     if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
-      process = subprocess.Popen(cmd)
+      f = open("log.txt","w")
+      process = subprocess.Popen(cmd,stdout=f)
       update.message.reply_text(f'Backup wurde gestartet.')
     else:
       update.message.reply_text(f'Backup läuft schon!')
@@ -43,8 +44,24 @@ def status(update: Update, context: CallbackContext) -> None:
      write.write_log(a)
      if process.poll() == 0:
         update.message.reply_text(f'Backup wurde nicht gestartet.')
+        datei = open("log.txt","r")
+        zahler = 0
+        string_pa = ""
+        for raw in datei:
+           zahler = zahler + len(raw)
+           string_pa = string_pa + raw + "\r\n"
+           if zahler >= 250:
+              update.message.reply_text(string_pa)
+              string_pa = ""
+              print("Zahler:",zahler)
+              zahler = 0
+              print("Schon gesendet")
+        if zahler > 0:
+          update.message.reply_text(string_pa)
+        datei.close()
+        print(zahler)
      else:
-        update.message.reply_text(f'Backup läuft schon.')
+        update.message.reply_text(f'Backup läuft grade.')
 
 def unlock(update: Update, context: CallbackContext) -> None:
     global externe_HDD
