@@ -50,7 +50,7 @@ def status(update: Update, context: CallbackContext) -> None:
         for raw in datei:
            zahler = zahler + len(raw)
            string_pa = string_pa + raw + "\r\n"
-           if zahler >= 250:
+           if zahler >= 700:
               update.message.reply_text(string_pa)
               string_pa = ""
               print("Zahler:",zahler)

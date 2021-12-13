@@ -12,19 +12,21 @@ read pass < db.key
 #MySQL Dump
 echo "[MySQL] dumpen"
 mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+zip -o /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 echo "[MySQL] fertig"
 
 sleep 3
 echo "[Borg] Starten"
 # Init borg-repo if absent
 if [ ! -d $repopfad ]; then
-  borg init --encryption=$verschluesselung $repopfad 
+  borg init --encryption=$verschluesselung $repopfad
   echo "->Borg-Repository erzeugt unter $repopfad"
 fi
 
 # backup data
 echo "->Start der Sicherung $(date)."
-borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www --exclude *.tmp 
+borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www --exclude *.tmp
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
 
 # prune archives
@@ -34,10 +36,9 @@ echo "[Borg] fertig"
 
 # MySQL Backup löschen
 echo "[MySQL] entferne MySQL Backup"
-rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip
 
 
 # Telegram Nachricht senden
 read telegramid < empf.id
-python3 request.py -id $telegramid -txt "Das interne Backup ist fertig."
-echo "[Telegram] Nachricht gesendet!"
+python3 request.py -id $telegramid -txt "Das externe Backup ist fertig."

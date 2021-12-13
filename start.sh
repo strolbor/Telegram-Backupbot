@@ -1,1 +1,1 @@
-screen -S a python3 tbot.py
+screen -S Telegrambot python3 tbot.py
