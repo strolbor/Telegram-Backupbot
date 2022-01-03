@@ -11,12 +11,11 @@ read pass < db.key
 #MySQL Dump
 echo "[MySQL] dumpen"
 mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+echo "[MySQL] zippen"
 zip -o /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 echo "[MySQL] fertig"
 
-echo "Timer"
-sleep 3
 echo "[Borg] Starten"
 # Init borg-repo if absent
 if [ ! -d $repopfad ]; then

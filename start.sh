@@ -1,1 +1,1 @@
-screen -S Telegrambot python3 tbot.py
+screen -L -S Telegrambot python3 tbot.py

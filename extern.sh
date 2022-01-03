@@ -5,7 +5,7 @@ verschluesselung="none"
 # "none,lz4,zlib,lzma"
 kompression="none"
 #repopfad="/media/HDD-Backup/borgbackup"
-repopfad="/media/urs/Safe1/safe"
+repopfad="/media/urs/Safe1/safe/safe"
 
 read pass < db.key
 
@@ -16,7 +16,6 @@ zip -o /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip /var/www/sql/nextc
 rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 echo "[MySQL] fertig"
 
-sleep 3
 echo "[Borg] Starten"
 # Init borg-repo if absent
 if [ ! -d $repopfad ]; then

@@ -68,11 +68,11 @@ def unlock(update: Update, context: CallbackContext) -> None:
     a = f'Anfrgae von {update.effective_user.id} @ Unlock'
     write.write_log(a)
     externe_HDD = True
-    update.message.reply_text(f'OK!')
+    update.message.reply_text(f'Fertig entsperrt!')
 
 def lock(update: Update, context: CallbackContext) -> None:
     global externe_HDD
     a = f'Anfrgae von {update.effective_user.id} @ Lock'
     write.write_log(a) 
     externe_HDD = False
-    update.message.reply_text(f'OK!')
+    update.message.reply_text(f'Fertig gesperrt!')
