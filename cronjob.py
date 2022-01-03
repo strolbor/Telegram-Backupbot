@@ -10,7 +10,7 @@ def backup():
       cmd = ["/media/HDD/Backup-New/intern.sh"]
       f = open("log.txt","w")
       process = subprocess.Popen(cmd,stdout=f)
-      r.sendmsg(receiver="python3 /media/HDD/Backup-New/cronjob.py",text="Backup wurde automatisch gestartet.")
+      r.sendmsg(receiver="978618750",text="Backup wurde automatisch gestartet.")
 
 if __name__ == '__main__':
     backup()
