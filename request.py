@@ -5,16 +5,10 @@ from datetime import datetime
 
 
 TELEGRAM_BOT_URL = "https://api.telegram.org/bot{}/sendMessage?chat_id={}&text={}"
-def sendmsg(receiver: str, text: str, debug):
+def sendmsg(receiver: str, text: str):
    # 1. Nachricht senden
-   first = r.post(TELEGRAM_BOT_URL.format(cf.TOKEN,receiver,text))
+   r.post(TELEGRAM_BOT_URL.format(cf.TOKEN,receiver,text))
 
-   # Debug Nachricht senden
-   if  debug != "None":
-      datum = str(datetime.now().strftime("%d.%b.%Y um %H %M %S"))
-      DEBUG_TXT = "Die Nachricht vom {} an die ID {} ergab folgenden Statuscode: {}.".format(datum,EMPFÄNGER,first.status_code)
-      
-      ras = r.post(TELEGRAM_BOT_URL.format(cf.TOKEN,cf.EMPF,DEBUG_TXT))
 
 
 if __name__ == '__main__':
@@ -27,8 +21,6 @@ if __name__ == '__main__':
    all_args.add_argument("-txt", "--text", required=True,
       help='Diese Telegram Nachricht muss in "" stehen.')
       #Debug Mode aktivieren
-   all_args.add_argument("-debug", "--debugging", required=False,
-      help="Sendet eine 2. Nachricht an den in der Config stehenden Empfänger.")
 
    #Arugment zu dict Objekt
    args = vars(all_args.parse_args())
@@ -36,5 +28,4 @@ if __name__ == '__main__':
    # Arguemente sortieren
    TEXT = str(args['text'])
    EMPFÄNGER = str(args['telegram_id'])
-   DEBUG = str(args['debugging'])
-   sendmsg(EMPFÄNGER,TEXT,DEBUG)
+   sendmsg(EMPFÄNGER,TEXT)
