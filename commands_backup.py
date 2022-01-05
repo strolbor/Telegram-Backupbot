@@ -2,8 +2,6 @@ from telegram import Update
 from telegram.ext import CallbackContext
 import write
 import subprocess
-import os
-
 
 process = subprocess.Popen(["echo", "hi"])
 externe_HDD = False
@@ -53,19 +51,18 @@ def status_main(update: Update, context: CallbackContext,file_name_log):
      write.write_id(update.effective_user.id)
      if process.poll() == 0:
         update.message.reply_text(f'Backup wurde nicht gestartet.')
-        if not os.path.exists(write.path):
-           os.makedirs(write.path)
+
         datei = open(write.path+file_name_log,"r")
-        zahler = 0
+        zaehler = 0
         string_pa = ""
         for raw in datei:
-           zahler = zahler + len(raw)
+           zaehler = zaehler + len(raw)
            string_pa = string_pa + raw + "\r\n"
-           if zahler >= 700:
+           if zaehler >= 700:
               update.message.reply_text(string_pa)
               string_pa = ""
-              zahler = 0
-        if zahler > 0:
+              zaehler = 0
+        if zaehler > 0:
           update.message.reply_text(string_pa)
         datei.close()
      else:
