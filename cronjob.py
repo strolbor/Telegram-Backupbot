@@ -8,7 +8,7 @@ time.sleep(1)
 def backup():
     global process
     if process.poll() == 0: 
-      cmd = ["/media/HDD/Backup-New/intern.sh" ,">" ,"/var/log/telegrambot/backup.txt"]
+      cmd = ["/media/HDD/Backup-New/intern.sh"]
       f = open(write.path+"log.txt","w")
       process = subprocess.Popen(cmd,stdout=f)
       r.sendmsg(receiver="978618750",text="Backup wurde automatisch gestartet.")
