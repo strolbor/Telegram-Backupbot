@@ -12,4 +12,3 @@ def test(update: Update, context: CallbackContext) -> None:
     write.write_log(a)
     write.write_id(f'{update.effective_user.id}')
     update.message.reply_text(f'OK! Fertig simuliert')
-    Bot.sendMessage("978618750","Text")
