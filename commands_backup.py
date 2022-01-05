@@ -41,8 +41,10 @@ def status(update: Update, context: CallbackContext) -> None:
          status_main(update, context,write.path+"backup.txt")
       if array[1] == "screen":
          status_main(update, context,write.path+"screenlog.0")
+      if array[1] == "log":
+         status_main(update, context,write.path+"log.txt")
    else:
-      status_main(update, context,write.path+"log.txt")
+      update.message.reply_text(f'Bitte als Option [cron|screen|log] hinschreiben.')
 
 def status_main(update: Update, context: CallbackContext,file_name_log):
      global process
