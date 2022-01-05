@@ -10,16 +10,16 @@ externe_HDD = False
 
 def backup(update: Update, context: CallbackContext) -> None:
    """Interne Backup Funktion"""
-    global process
-    a = write.getLogLine(update.effective_user.id,"Backup intern")
-    write.write_log(a)
-    write.write_id(update.effective_user.id)
-    if process.poll() == 0: 
+   global process
+   a = write.getLogLine(update.effective_user.id,"Backup intern")
+   write.write_log(a)
+   write.write_id(update.effective_user.id)
+   if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
       f = open("log.txt","w")
       process = subprocess.Popen(cmd,stdout=f)
       update.message.reply_text(f'Backup wurde gestartet.')
-    else:
+   else:
       update.message.reply_text(f'Backup läuft schon!')
 
 def backup_extern(update: Update, context: CallbackContext) -> None:
