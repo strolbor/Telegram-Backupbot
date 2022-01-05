@@ -39,8 +39,9 @@ def backup_extern(update: Update, context: CallbackContext) -> None:
 
 def status(update: Update, context: CallbackContext) -> None:
    array = update.message.text.split(" ")
-   if array[1] == "cron" or array[1] == "cronjob":
-      status_main(update, context,"backup.txt")
+   if len(array) > 0:
+      if array[1] == "cron" or array[1] == "cronjob":
+         status_main(update, context,"backup.txt")
    else:
       status_main(update, context,"log.txt")
 
