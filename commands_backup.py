@@ -2,14 +2,16 @@ from telegram import Update
 from telegram.ext import CallbackContext
 import write
 import subprocess
+from datetime import date, datetime
+
 
 process = subprocess.Popen(["echo", "hi"])
 externe_HDD = False
 
 def backup(update: Update, context: CallbackContext) -> None:
     global process
-    ids = f'{update.effective_user.id}'
-    a = f'Anfrage von {ids} @ backup Extern'
+    dstr = str(datetime.now().strftime("%H:%M:%S %d.%m.%Y"))
+    a = f'[{dstr}]Anfrage von {update.effective_user.id} @ backup Extern'
     write.write_log(a)
     write.write_id(ids)
     if process.poll() == 0: 
@@ -22,8 +24,8 @@ def backup(update: Update, context: CallbackContext) -> None:
 
 def backup_extern(update: Update, context: CallbackContext) -> None:
     global externe_HDD
-    ids = f'{update.effective_user.id}'
-    a = f'Anfrage von {ids} @ backup Extern'
+    dstr = str(datetime.now().strftime("%H:%M:%S %d.%m.%Y"))
+    a = f'[{dstr}]Anfrage von {update.effective_user.id} @ backup Extern'
     write.write_id(ids)
     write.write_log(a)
     global process
@@ -40,7 +42,8 @@ def backup_extern(update: Update, context: CallbackContext) -> None:
 
 def status(update: Update, context: CallbackContext) -> None:
      global process
-     a = f'Anfrage von {update.effective_user.id} @ status'
+     dstr = str(datetime.now().strftime("%H:%M:%S %d.%m.%Y"))
+     a = f'[{dstr}]Anfrage von {update.effective_user.id} @ status'
      write.write_log(a)
      if process.poll() == 0:
         update.message.reply_text(f'Backup wurde nicht gestartet.')

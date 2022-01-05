@@ -6,14 +6,15 @@ verschluesselung="none"
 kompression="none"
 repopfad="/media/HDD-Backup/borgbackup"
 
-read pass < db.key
+#read pass < db.key
 
 #MySQL Dump
 echo "[MySQL] dumpen"
-mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+#mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp.bak
 echo "[MySQL] zippen"
-zip -o /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
-rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
+zip -o /var/www/sql/nextcloud-sqlbkp.bak.zip /var/www/sql/nextcloud-sqlbkp.bak
+rm -rf /var/www/sql/nextcloud-sqlbkp.bak
 echo "[MySQL] fertig"
 
 echo "[Borg] Starten"
@@ -35,7 +36,7 @@ echo "[Borg] fertig"
 
 # MySQL Backup löschen
 echo "[MySQL] entferne MySQL Backup"
-rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip
+rm -rf /var/www/sql/nextcloud-sqlbkp.bak.zip
 
 # Telegram Nachricht senden
 read telegramid < empf.id
