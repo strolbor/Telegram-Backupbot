@@ -1,4 +1,5 @@
 from helper import delete_file
+from datetime import datetime
 
 def write_log(text):
     print(text)
@@ -22,3 +23,5 @@ def write_stoer(text):
     datei.flush()
     datei.close()
 
+def getLogLine(uid,functionname) -> str:
+   return f'[{str(datetime.now().strftime("%H:%M:%S %d.%m.%Y"))}] Anfrage von {uid} @ {functionname}'
