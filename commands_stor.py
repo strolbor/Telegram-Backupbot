@@ -30,5 +30,5 @@ def stoerender(update: Update, context: CallbackContext):
             #Datei schreiben
             write.write_stoer(zu_schreiben)
             # Nachricht schreiben
-            update.message.reply_text(f'Erledigt. Folgene Nachricht wurde im Log aufgenommen: {zu_schreiben}')
+            update.message.reply_text(f'Erledigt. Folgene Nachricht wurde im Log aufgenommen:\r\n {zu_schreiben}')
 
