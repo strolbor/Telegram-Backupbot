@@ -16,7 +16,7 @@ def write_id(ids):
     file_name = 'empf.id'
     delete_file(file_name)
     datei_id = open(file_name,'a')
-    datei_id.write(ids)
+    datei_id.write(str(ids))
     datei_id.flush()
     datei_id.close()
 
