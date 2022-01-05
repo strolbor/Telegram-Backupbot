@@ -36,4 +36,4 @@ def init():
         os.makedirs(path)
 
 def getLogLine(uid,functionname) -> str:
-   return f'[{str(datetime.now().strftime("%H:%M:%S %d.%m.%Y"))}] Anfrage von {uid} @ {functionname}'
+   return f'[{str(datetime.now().strftime("%d.%m.%Y %H:%M:%S"))}] Anfrage von {uid} @ {functionname}'
