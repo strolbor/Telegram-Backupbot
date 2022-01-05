@@ -38,9 +38,11 @@ def status(update: Update, context: CallbackContext) -> None:
    array = update.message.text.split(" ")
    if len(array) > 1:
       if array[1] == "cron" or array[1] == "cronjob":
-         status_main(update, context,"backup.txt")
+         status_main(update, context,write.path+"backup.txt")
+      if array[1] == "screen":
+         status_main(update, context,write.path+"screenlog.0")
    else:
-      status_main(update, context,"log.txt")
+      status_main(update, context,write.path+"log.txt")
 
 def status_main(update: Update, context: CallbackContext,file_name_log):
      global process
@@ -50,7 +52,7 @@ def status_main(update: Update, context: CallbackContext,file_name_log):
      if process.poll() == 0:
         update.message.reply_text(f'Backup wurde nicht gestartet.')
 
-        datei = open(write.path+file_name_log,"r")
+        datei = open(file_name_log,"r")
         zaehler = 0
         string_pa = ""
         for raw in datei:

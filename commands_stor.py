@@ -3,9 +3,6 @@ from telegram.ext import CallbackContext
 import write
 from datetime import datetime
 
-
-
-
 def stoerender(update: Update, context: CallbackContext):
     array = update.message.text.split(" ")
     if len(array) <= 2:
