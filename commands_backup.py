@@ -9,8 +9,7 @@ externe_HDD = False
 def backup(update: Update, context: CallbackContext) -> None:
    """Interne Backup Funktion"""
    global process
-   a = write.getLogLine(update.effective_user.id,"Backup intern")
-   write.write_log(a)
+   write.write_log(write.getLogLine(update.effective_user.id,"Backup intern"))
    write.write_id(update.effective_user.id)
    if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
@@ -22,11 +21,9 @@ def backup(update: Update, context: CallbackContext) -> None:
 
 def backup_extern(update: Update, context: CallbackContext) -> None:
    """ Externes Backup Funktion"""
-   global externe_HDD
-   a = write.getLogLine(update.effective_user.id,"Backup extern")
+   global externe_HDD, process
    write.write_id(update.effective_user.id)
-   write.write_log(a)
-   global process
+   write.write_log(write.getLogLine(update.effective_user.id,"Backup extern"))
    if externe_HDD:
       if process.poll() == 0:
          cmd = ["/media/HDD/Backup-New/extern.sh"]
@@ -68,8 +65,7 @@ def status_main(update: Update, context: CallbackContext,file_name_log):
         datei.close()
      else:
         update.message.reply_text(f'Backup läuft grade.')
-        a = write.getLogLine(update.effective_user.id,"Status: Backup läuft grade.")
-        write.write_log(a)
+        write.write_log(write.getLogLine(update.effective_user.id,"Status: Backup läuft grade."))
 
 def unlock(update: Update, context: CallbackContext) -> None:
     global externe_HDD

@@ -23,7 +23,7 @@ def write_id(ids):
 def write_stoer(text):
     """ Logschreiber des Nervens"""
     init()
-    filename = "storender.txt"
+    filename = path+"storender.txt"
     datei = open(filename,"a")
     datei.write(text+"\r\n")
     datei.flush()
