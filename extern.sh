@@ -40,4 +40,4 @@ rm -rf /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak.zip
 
 # Telegram Nachricht senden
 read telegramid < empf.id
-python3 request.py -id $telegramid -txt "Das externe Backup ist fertig."
+python3 telegramsendapi.py -id $telegramid -txt "Das externe Backup ist fertig."
