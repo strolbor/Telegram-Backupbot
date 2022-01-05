@@ -47,10 +47,9 @@ def status(update: Update, context: CallbackContext) -> None:
      write.write_id(update.effective_user.id)
      if process.poll() == 0:
         update.message.reply_text(f'Backup wurde nicht gestartet.')
-        path = "/var/log/telegrambot/"
-        if not os.path.exists(path):
-           os.makedirs(path)
-        datei = open(path+"log.txt","r")
+        if not os.path.exists(write.path):
+           os.makedirs(write.path)
+        datei = open(write.path+"log.txt","r")
         zahler = 0
         string_pa = ""
         for raw in datei:
@@ -77,7 +76,7 @@ def unlock(update: Update, context: CallbackContext) -> None:
 
 def lock(update: Update, context: CallbackContext) -> None:
     global externe_HDD
-    a = getLogLine(update.effective_user.id,"Unlock")
+    a = write.getLogLine(update.effective_user.id,"Unlock")
     write.write_log(a)
     externe_HDD = False
     update.message.reply_text(f'Fertig gesperrt!')

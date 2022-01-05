@@ -1,6 +1,8 @@
 from helper import delete_file
 from datetime import datetime
 
+path = "/var/log/telegrambot/"
+
 def write_log(text):
     print(text)
     datei_log = open('telegrambot.log','a')

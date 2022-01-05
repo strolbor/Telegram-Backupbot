@@ -1,6 +1,6 @@
 import subprocess
 import time
-import request as r
+import telegramsendapi as r
 
 process = subprocess.Popen(["echo", "hi"])
 time.sleep(1)
