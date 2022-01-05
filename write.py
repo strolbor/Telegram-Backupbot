@@ -5,7 +5,7 @@ path = "/var/log/telegrambot/"
 
 def write_log(text):
     print(text)
-    datei_log = open('telegrambot.log','a')
+    datei_log = open(path+'telegrambot.log','a')
     datei_log.write(text + "\n")
     datei_log.flush()
     datei_log.close()

@@ -39,8 +39,14 @@ def backup_extern(update: Update, context: CallbackContext) -> None:
    else:
       update.message.reply_text(f'Dieser Command ist gesperrt.')
 
-
 def status(update: Update, context: CallbackContext) -> None:
+   array = update.message.text.split(" ")
+   if array[1] == "cron" or array[1] == "cronjob":
+      status_main(update: Update, context: CallbackContext,"backup.txt")
+   else:
+      status_main(update: Update, context: CallbackContext,"log.txt")
+
+def status_main(update: Update, context: CallbackContext,file_name_log):
      global process
      a = write.getLogLine(update.effective_user.id,"Status")
      write.write_log(a)
@@ -49,7 +55,7 @@ def status(update: Update, context: CallbackContext) -> None:
         update.message.reply_text(f'Backup wurde nicht gestartet.')
         if not os.path.exists(write.path):
            os.makedirs(write.path)
-        datei = open(write.path+"log.txt","r")
+        datei = open(write.path+file_name_log,"r")
         zahler = 0
         string_pa = ""
         for raw in datei:
