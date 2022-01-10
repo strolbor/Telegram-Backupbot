@@ -9,7 +9,7 @@ def backup():
     global process
     if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
-      f = open(write.path+"log.txt","w")
+      f = open(write.path+"backup.txt","w")
       process = subprocess.Popen(cmd,stdout=f)
       r.sendmsg(receiver="978618750",text="Backup wurde automatisch gestartet.")
 
