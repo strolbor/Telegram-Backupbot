@@ -13,7 +13,7 @@ def backup(update: Update, context: CallbackContext) -> None:
    write.write_id(update.effective_user.id)
    if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
-      f = open("log.txt","w")
+      f = open(write.path+"log.txt","w")
       process = subprocess.Popen(cmd,stdout=f)
       update.message.reply_text(f'Backup wurde gestartet.')
    else:
