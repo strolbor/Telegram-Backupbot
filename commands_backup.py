@@ -40,7 +40,7 @@ def status(update: Update, context: CallbackContext) -> None:
       if array[1] == "cron" or array[1] == "cronjob":
          status_main(update, context,write.path+"backup.txt")
       if array[1] == "screen":
-         status_main(update, context,write.path+"screenlog.0")
+         status_main(update, context,"/media/HDD/Backup-New/screenlog.0")
       if array[1] == "log":
          status_main(update, context,write.path+"log.txt")
    else:
