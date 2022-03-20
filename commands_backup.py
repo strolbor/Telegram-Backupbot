@@ -13,7 +13,7 @@ def backup(update: Update, context: CallbackContext) -> None:
    write.write_id(update.effective_user.id)
    if process.poll() == 0: 
       cmd = ["/media/HDD/Backup-New/intern.sh"]
-      f = open(write.path+"log.txt","w")
+      f = open(write.path+"intern.log","w")
       process = subprocess.Popen(cmd,stdout=f)
       update.message.reply_text(f'Backup wurde gestartet.')
    else:
@@ -27,7 +27,8 @@ def backup_extern(update: Update, context: CallbackContext) -> None:
    if externe_HDD:
       if process.poll() == 0:
          cmd = ["/media/HDD/Backup-New/extern.sh"]
-         process = subprocess.Popen(cmd)
+         f = open(write.path+"extern.log","w")
+         process = subprocess.Popen(cmd,stdout=f)
          update.message.reply_text(f'Backup wurde gestartet.')
       else:
          update.message.reply_text(f'Backup läuft schon!')
@@ -39,12 +40,12 @@ def status(update: Update, context: CallbackContext) -> None:
    if len(array) > 1:
       if array[1] == "cron" or array[1] == "cronjob":
          status_main(update, context,write.path+"backup.txt")
-      if array[1] == "screen":
-         status_main(update, context,"/media/HDD/Backup-New/screenlog.0")
-      if array[1] == "log":
-         status_main(update, context,write.path+"log.txt")
+      if array[1] == "extern":
+         status_main(update, context,write.path+"extern.log")
+      if array[1] == "intern":
+         status_main(update, context,write.path+"intern.log")
    else:
-      update.message.reply_text(f'Bitte als Option [cron|screen|log] hinschreiben.')
+      update.message.reply_text(f'Bitte als Option [cron|intern|extern] hinschreiben.')
 
 def status_main(update: Update, context: CallbackContext,file_name_log):
      global process

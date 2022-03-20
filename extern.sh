@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "Wir sind die Borg. Deaktivieren Sie Ihre Schutzschilde und ergeben Sie sich. Wir werden Ihre biologischen und technologischen Charakteristika den unseren hinzufügen. Ihre Kultur wird sich anpassen und uns dienen. Widerstand ist zwecklos!"
 # "{none, keyfile, repokey}"
-verschluesselung="keyfile"
+verschluesselung="repokey"
 # "none,lz4,zlib,lzma"
 kompression="lzma,5"
 #repopfad="/media/HDD-Backup/borgbackup"
-repopfad="/media/urs/Safe1/safe/safe"
+repopfad="/media/extern/safe"
 
 #read pass < db.key
 
@@ -23,6 +23,8 @@ echo "[Borg] Starten"
 if [ ! -d $repopfad ]; then
   borg init --encryption=$verschluesselung $repopfad
   echo "->Borg-Repository erzeugt unter $repopfad"
+  echp "Warte 5s"
+  sleep 5s
 fi
 
 # backup data
@@ -40,6 +42,6 @@ echo "[MySQL] entferne MySQL Backup"
 rm -rf /var/www/sql/nextcloud-sqlbkp.bak.zip
 
 # Telegram Nachricht senden
-read telegramid < empf.id
-python3 telegramsendapi.py -id $telegramid -txt "Das interne Backup ist fertig."
+read telegramid < /media/HDD/Backup-New/empf.id
+python3 /media/HDD/Backup-New/telegramsendapi.py -id $telegramid -txt "Das interne Backup ist fertig."
 echo "[Telegram] Nachricht gesendet!"
