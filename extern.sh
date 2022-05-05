@@ -33,6 +33,9 @@ borg create --compression $kompression --exclude-caches --one-file-system -v --s
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
 
 # prune archives
+read telegramid < /media/HDD/Backup-New/empf.id
+python3 /media/HDD/Backup-New/telegramsendapi.py -id $telegramid -txt "Das Backup benötig die Passphrase."
+
 borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
 echo "-> Wir sind die Borg! Wiederstand war zwecklos."
 echo "[Borg] fertig"
