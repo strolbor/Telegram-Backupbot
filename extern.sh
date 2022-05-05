@@ -14,7 +14,7 @@ echo "[MySQL] dumpen"
 #mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp_`date +"%Y%m%d"`.bak
 mysqldump --single-transaction -h localhost -u root nextcloud > /var/www/sql/nextcloud-sqlbkp.bak
 echo "[MySQL] zippen"
-zip -o /var/www/sql/nextcloud-sqlbkp.bak.zip /var/www/sql/nextcloud-sqlbkp.bak
+zip -o /var/www/sql/nextcloud-sqlbkp.bak.zip /var/www/sql/nextcloud-sqlbkp.bak > /var/log/telegrambot/extern.log
 rm -rf /var/www/sql/nextcloud-sqlbkp.bak
 echo "[MySQL] fertig"
 
@@ -28,9 +28,11 @@ if [ ! -d $repopfad ]; then
 fi
 
 # backup data
+echo "->Start der Sicherung $(date)." > /var/log/telegrambot/extern.log
 echo "->Start der Sicherung $(date)."
 borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www /etc/apache2/ --exclude *.tmp
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
+echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"  > /var/log/telegrambot/extern.log
 
 # prune archives
 read telegramid < /media/HDD/Backup-New/empf.id
@@ -39,6 +41,7 @@ python3 /media/HDD/Backup-New/telegramsendapi.py -id $telegramid -txt "Das Backu
 borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
 echo "-> Wir sind die Borg! Wiederstand war zwecklos."
 echo "[Borg] fertig"
+echo "[Borg] fertig" > /var/log/telegrambot/extern.log
 
 # MySQL Backup löschen
 echo "[MySQL] entferne MySQL Backup"

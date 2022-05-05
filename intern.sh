@@ -3,7 +3,8 @@
 # "{none, keyfile, repokey}"
 verschluesselung="none"
 # "none,lz4,zlib,lzma"
-kompression="none"
+#kompression="none"
+kompression="lzma,5"
 repopfad="/media/HDD-Backup/borgbackup"
 #repopfad="/media/urs/Safe1/safe/safe"
 
