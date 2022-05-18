@@ -1,0 +1,9 @@
+[Unit]
+Description=Meine Unit
+
+[Service]
+ExecStart=/usr/bin/python3 /media/HDD/Backup-New/tbot.py
+
+
+[Install]
+WantedBy=multi-user.target

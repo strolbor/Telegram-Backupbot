@@ -27,7 +27,7 @@ fi
 
 # backup data
 echo "->Start der Sicherung $(date)."
-borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /media/HDD /var/www /etc/apache2/ --exclude *.tmp
+borg create --compression $kompression --exclude-caches --one-file-system -v --stats --progress $repopfad::'HDD4TB-{now:%Y-%m-%d-%H%M%S}' /home/ /media/HDD /var/www /etc/apache2/ /etc/letsencrypt --exclude *.tmp
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
 
 # prune archives
