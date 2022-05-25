@@ -1,7 +1,12 @@
 [Unit]
-Description=Meine Unit
+Description=Telegram Bot zum Backup starten
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
 
 [Service]
+Restart=on-failure
+RestartSec=5s
+
 ExecStart=/usr/bin/python3 /media/HDD/Backup-New/tbot.py
 
 
