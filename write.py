@@ -23,7 +23,6 @@ def write_id(ids):
 def write_txt(ids):
     init()
     file_name = 'save.txt'
-    delete_file(file_name)
     datei_id = open(file_name,'a')
     datei_id.write(str(ids))
     datei_id.flush()
