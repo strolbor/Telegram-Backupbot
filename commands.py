@@ -12,3 +12,10 @@ def test(update: Update, context: CallbackContext) -> None:
     write.write_log(a)
     write.write_id(f'{update.effective_user.id}')
     update.message.reply_text(f'OK! Fertig simuliert')
+
+def save(update: Update, context: CallbackContext) -> None:
+    a = write.getLogLine(update.effective_user.id,"Test Command")
+    write.write_log(a)
+    write.write_id(f'{update.effective_user.id}')
+    write.write_txt(update.message.text)
+    update.message.reply_text(f'OK! Fertig geschrieben')
