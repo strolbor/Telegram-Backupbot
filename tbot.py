@@ -26,6 +26,7 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('unlock', cmdbck.unlock))
     updater.dispatcher.add_handler(CommandHandler('lock', cmdbck.lock))
     updater.dispatcher.add_handler(CommandHandler('test', cmd.test))
+    updater.dispatcher.add_handler(CommandHandler('save', cmd.save))
 
     updater.start_polling()
     updater.idle()
