@@ -6,14 +6,15 @@ path = "/var/log/telegrambot/"
 
 def write_log(text):
     init()
-    datei_log = open(path+'telegrambot.log','a')
+    file_name = path+'telegrambot.log'
+    datei_log = open(file_name,'a')
     datei_log.write(text + "\n")
     datei_log.flush()
     datei_log.close()
 
 def write_id(ids):
     init()
-    file_name = 'empf.id'
+    file_name = path+'empf.id'
     delete_file(file_name)
     datei_id = open(file_name,'a')
     datei_id.write(str(ids))
@@ -22,7 +23,7 @@ def write_id(ids):
 
 def write_txt(ids):
     init()
-    file_name = 'save.txt'
+    file_name = path+'save.txt'
     datei_id = open(file_name,'a')
     datei_id.write(str(ids))
     datei_id.flush()
