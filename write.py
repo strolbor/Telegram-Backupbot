@@ -17,7 +17,7 @@ def write_id(ids):
     file_name = path+'empf.id'
     delete_file(file_name)
     datei_id = open(file_name,'a')
-    datei_id.write(str(ids))
+    datei_id.write(str(ids)+"\r\n")
     datei_id.flush()
     datei_id.close()
 
@@ -25,7 +25,7 @@ def write_txt(ids):
     init()
     file_name = path+'save.txt'
     datei_id = open(file_name,'a')
-    datei_id.write(str(ids))
+    datei_id.write(str(ids)+"\r\n")
     datei_id.flush()
     datei_id.close()
 
