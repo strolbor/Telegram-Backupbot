@@ -38,10 +38,16 @@ echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"  > /var/log/teleg
 read telegramid < /media/HDD/Backup-New/empf.id
 python3 /media/HDD/Backup-New/telegramsendapi.py -id $telegramid -txt "Das Backup benötig die Passphrase."
 
-borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
+#borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
+borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=14d --keep-daily=21 --keep-weekly=14 --keep-monthly=44
 echo "-> Wir sind die Borg! Wiederstand war zwecklos."
 echo "[Borg] fertig"
 echo "[Borg] fertig" > /var/log/telegrambot/extern.log
+
+echo "[Borg] Compact"
+borg compact $repopfad
+echo "[Borg] Compact finished"
+
 
 # MySQL Backup löschen
 echo "[MySQL] entferne MySQL Backup"

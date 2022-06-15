@@ -31,9 +31,14 @@ borg create --compression $kompression --exclude-caches --one-file-system -v --s
 echo "-> Ende der Sicherung $(date). Dauer: $SECONDS Sekunden"
 
 # prune archives
-borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
+#borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=7d --keep-daily=7 --keep-weekly=4 --keep-monthly=24
+borg prune -v --list $repopfad --prefix 'HDD4TB-' --keep-within=14d --keep-daily=21 --keep-weekly=14 --keep-monthly=44
 echo "-> Wir sind die Borg! Wiederstand war zwecklos."
 echo "[Borg] fertig"
+
+echo "[Borg] Compact"
+borg compact $repopfad
+echo "[Borg] Compact finished"
 
 # MySQL Backup löschen
 echo "[MySQL] entferne MySQL Backup"
