@@ -39,13 +39,25 @@ def status(update: Update, context: CallbackContext) -> None:
    array = update.message.text.split(" ")
    if len(array) > 1:
       if array[1] == "cron" or array[1] == "cronjob":
-         status_main(update, context,write.path+"backup.txt")
+         
+         statuscron(update,context)
       if array[1] == "extern":
-         status_main(update, context,write.path+"extern.log")
+         statusextern(update,context)
       if array[1] == "intern":
-         status_main(update, context,write.path+"intern.log")
+         statusintern(update,context)
    else:
       update.message.reply_text(f'Bitte als Option [cron|intern|extern] hinschreiben.')
+
+def statusintern(update: Update, context: CallbackContext) -> None:
+   status_main(update, context,write.path+"intern.log")
+
+def statusextern(update: Update, context: CallbackContext) -> None:
+   status_main(update, context,write.path+"extern.log")
+
+def statuscron(update: Update, context: CallbackContext) -> None:
+   status_main(update, context,write.path+"backup.txt")
+
+
 
 def status_main(update: Update, context: CallbackContext,file_name_log):
      global process

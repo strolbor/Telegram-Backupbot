@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 
 import config as cf
-import write, helper, commands_backup as cmdbck, commands_stor as cmdsto, commands as cmd
+import commands_backup as cmdbck, commands_stor as cmdsto, commands as cmd
 
 # pip install python-telegram-bot
 
@@ -17,6 +17,9 @@ def main():
     updater.dispatcher.add_handler(CommandHandler('backup', cmdbck.backup))
     updater.dispatcher.add_handler(CommandHandler('extern', cmdbck.backup_extern))
     updater.dispatcher.add_handler(CommandHandler('status', cmdbck.status))
+    updater.dispatcher.add_handler(CommandHandler('statusintern', cmdbck.statusintern))
+    updater.dispatcher.add_handler(CommandHandler('statusextern', cmdbck.statusextern))
+    updater.dispatcher.add_handler(CommandHandler('statuscron', cmdbck.statuscron))
 
     # Störende Commands
     updater.dispatcher.add_handler(CommandHandler('stoer', cmdsto.stoerender, pass_args=True))
